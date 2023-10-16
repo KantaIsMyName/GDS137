@@ -1,35 +1,25 @@
-var canvas;
-var context;
-var timer;
-var interval = 1000/60;
-var ball;
 
-	canvas = document.getElementById("canvas");
-	context = canvas.getContext("2d");	
-	ball = new Ball();
-	
-	//------Declare the Player's speed on the x and y axis------
-	ball.vx = 2;
-	ball.vy = 0;
-	//----------------------------------------------------
-	
-	timer = setInterval(animate, interval);
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");	
 
+//Set the Animation Timer
 
-function animate()
+var ball = new Ball();
+
+ball.x=canvas.width;
+ball.x-= 50;
+
+ball.width = 200;
+ball.vx = 5;
+ball.vx = -ball.vx;
+//ball.vy = -2;
+var mainTimer = setInterval(animate, 1000/60);
+function animate() // moving and drawing functions
 {
+//Erase the Screen
 	context.clearRect(0,0,canvas.width, canvas.height);	
-	
-	//----Movement Using the Player's move() function----
-	player.move();
-	//---------------------------------------------------
-	
-	//--------------Bounce off Right----------------------
-	if(ball.x > canvas.width - ball.width/2)
-	{
-		ball.vx = -ball.vx;	
-	}
-	//---------------------------------------------------
-	
-	player.draw();
+
+	ball.move();
+
+	ball.draw()
 }

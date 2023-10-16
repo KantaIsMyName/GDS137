@@ -26,10 +26,13 @@ function animate()
 	player.move();
 	//---------------------------------------------------
 	
-	//--------------Bounce off Right----------------------
+	//--------------Bounce of Right----------------------
 	if(player.x > canvas.width - player.width/2)
 	{
-		player.vx = -player.vx;	
+		player.x = canvas.width;
+		player.x-= 50
+		player.vx = -player.vx;
+
 	}
 	//---------------------------------------------------
 	

@@ -3,13 +3,8 @@
     "development"
   ],
   "hints": {
-    "meta-viewport": "off",
     "axe/language": "off",
-    "axe/text-alternatives": [
-      "default",
-      {
-        "image-alt": "off"
-      }
-    ]
+    "axe/text-alternatives": "off",
+    "meta-viewport": "off"
   }
 }
