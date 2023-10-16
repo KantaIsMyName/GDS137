@@ -11,7 +11,7 @@ var player;
 	player = new Player();
 	
 	//------Declare the Player's speed on the x and y axis------
-	player.vx = 2;
+	player.vx = 10;
 	player.vy = 0;
 	//----------------------------------------------------
 	
@@ -27,6 +27,12 @@ function animate()
 	if(player.x > canvas.width + player.width/2)
 	{
 		player.x = -player.width/2	
+		player.x-= 50
+		player.vx = -player.vx;
+
+		player.y = -player.width/2;
+		player.y-= 50
+		player.vy = -player.vy;
 	}
 	//---------------------------------------------------
 	
