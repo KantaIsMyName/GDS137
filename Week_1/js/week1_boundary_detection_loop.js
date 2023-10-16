@@ -29,10 +29,6 @@ function animate()
 		player.x = -player.width/2	
 		player.x-= 50
 		player.vx = -player.vx;
-
-		player.y = -player.width/2;
-		player.y-= 50
-		player.vy = -player.vy;
 	}
 	//---------------------------------------------------
 	
