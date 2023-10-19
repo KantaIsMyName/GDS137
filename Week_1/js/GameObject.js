@@ -36,3 +36,4 @@ function Player()
 		this.y += this.vy;
 	}
 }
+
