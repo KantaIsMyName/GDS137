@@ -6,6 +6,7 @@ var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
 var player;
+var player;
 
 //This is used to stop the player from moving through obstacles.
 var prevX;
@@ -43,7 +44,19 @@ function animate()
 	{
 		//console.log("Moving Right");
 		player.x += -2;
+	} 
+	if(w)
+	{
+		//console.log("Moving Right");
+		player.y += -2;
 	}
+	
+	if(s)
+	{
+		//console.log("Moving Right");
+		player.y += 2;
+	} 
+	
 	
 	
 	//Check Collisions
@@ -76,7 +89,7 @@ function animate()
 	//Impede movement
 	if(rBlock2.hitTestObject(player))
 	{
-		player.x = prevX;
+		player1.x = prevX;
 		console.log("colliding");
 	}
 	else
