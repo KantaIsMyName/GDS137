@@ -34,6 +34,16 @@ function animate()
 		console.log("Moving Left");
 		player.x += -2;
 	}
+	if(w)
+	{
+		console.log("Moving Right");
+		player.y += -2;
+	}
+	if(s)
+	{
+		console.log("Moving Left");
+		player.y += 2;
+	}
 	
 	//Update the Screen
 	player.drawRect();

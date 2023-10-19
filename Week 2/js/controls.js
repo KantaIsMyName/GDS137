@@ -47,10 +47,10 @@ function release(e)
 	}
 	if(e.keyCode == 87)
 	{
-		w = true;
+		w = false;
 	}
 	if(e.keyCode == 83)
 	{
-		s = true;
+		s = false;
 	}
 }
