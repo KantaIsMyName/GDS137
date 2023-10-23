@@ -20,6 +20,8 @@ var ball;
 	// declare ball speed //
 	ball.vx = 5;
 	ball.vy = 5;
+	ball.width = 50;
+	ball.height = 50;
 
 	timer = setInterval(animate, interval);
 
@@ -82,10 +84,9 @@ function animate()
 		ball.vx = -ball.vx;
 
 	}  
-	if(ball.y > canvas.width - ball.height/2)
+	if(ball.y > canvas.height - ball.height/2)
 	{
-		ball.y = canvas.height;
-		ball.y-= 50
+		ball.y = canvas.height - ball.height/2;
 		ball.vy = -ball.vy;
 	}
 
