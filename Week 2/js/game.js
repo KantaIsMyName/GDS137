@@ -98,18 +98,13 @@ function animate()
 
 	// Bounce ball off paddle
 
-	
-	if(ball.y > player.y)
+	if(ball.x < player.x + ball.width/2)
 	{
-		ball.y = player.y - player.height/6
-		ball.vy = -ball.vy;
-	}
-
-	if(ball.y < player.y)
-	{
-		ball.y = 0 + ball.height/2;
-		ball.vy = -ball.vy;
+		ball.x = player.x + ball.width/2;
+		ball.vx = -ball.vx;
 	} 
+
+	
 	player.drawRect();
 	ball.drawCircle();
 	
