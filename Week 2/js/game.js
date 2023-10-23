@@ -77,13 +77,13 @@ function animate()
 
 	}
 
-	if(ball.x < 0 )
+	/*if(ball.x < 0 )
 	{
 		ball.x = 0 + ball.width/2;
 		ball.x -= 10
 		ball.vx = -ball.vx;
 
-	}  
+	}*/  
 	if(ball.y > canvas.height - ball.height/2)
 	{
 		ball.y = canvas.height - ball.height/2;
@@ -93,10 +93,23 @@ function animate()
 	if(ball.y < 0 )
 	{
 		ball.y = 0 + ball.height/2;
-		ball.y -= 10
 		ball.vy = -ball.vy;
 	} 
 
+	// Bounce ball off paddle
+
+	
+	if(ball.y > player.y)
+	{
+		ball.y = player.y - player.height/6
+		ball.vy = -ball.vy;
+	}
+
+	if(ball.y < player.y)
+	{
+		ball.y = 0 + ball.height/2;
+		ball.vy = -ball.vy;
+	} 
 	player.drawRect();
 	ball.drawCircle();
 	
