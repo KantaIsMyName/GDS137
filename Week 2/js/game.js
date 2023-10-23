@@ -77,13 +77,13 @@ function animate()
 
 	}
 
-	/*if(ball.x < 0 )
+	if(ball.x < 0 )
 	{
-		ball.x = 0 + ball.width/2;
-		ball.x -= 10
+		ball.x = canvas.width/2;
 		ball.vx = -ball.vx;
 
-	}*/  
+	}  
+	
 	if(ball.y > canvas.height - ball.height/2)
 	{
 		ball.y = canvas.height - ball.height/2;
