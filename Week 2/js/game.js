@@ -14,6 +14,15 @@ var player;
 	
 	timer = setInterval(animate, interval);
 
+var ball; 
+	ball = new GameObject();
+
+	// declare ball speed //
+	ball.vx = 5;
+	ball.vy = 5;
+
+	timer = setInterval(animate, interval);
+
 
 function animate()
 {
@@ -43,42 +52,51 @@ function animate()
 
 	//----Movement Using the Player's move() function----
 	player.move();
+	ball.move();
 	//---------------------------------------------------
 	
-	//--------------Bounce of Right----------------------
-	/*if(player.x > canvas.width - player.width/2)
-	{
-		player.x = canvas.width;
-		player.x-= 50
-		player.vx = -player.vx;
-
-	}
-
-	if(player.x < 0 + player.width/2)
-	{
-		player.x = 0 + player.width/2;
-		player.x -= 10
-		player.vx = -player.vx;
-
-	} */ 
+	
 	if(player.y > canvas.width - player.height/2)
 	{
 		player.y = canvas.height;
-		//player.y-= 50
-		//player.vy = -player.vy;
-
 	}
 
 	if(player.y < 0 + player.height/2)
 	{
 		player.y = 0 + player.height/2;
-		//player.y -= 10
-		//player.vy = -player.vy;
-
 	} 
 	
+	// Ball boundaries //
+	if(ball.x > canvas.width - ball.width/2)
+	{
+		ball.x = canvas.width;
+		ball.x-= 50
+		ball.vx = -ball.vx;
+
+	}
+
+	if(ball.x < 0 )
+	{
+		ball.x = 0 + ball.width/2;
+		ball.x -= 10
+		ball.vx = -ball.vx;
+
+	}  
+	if(ball.y > canvas.width - ball.height/2)
+	{
+		ball.y = canvas.height;
+		ball.y-= 50
+		ball.vy = -ball.vy;
+	}
+
+	if(ball.y < 0 )
+	{
+		ball.y = 0 + ball.height/2;
+		ball.y -= 10
+		ball.vy = -ball.vy;
+	} 
 
 	player.drawRect();
-
-
+	ball.drawCircle();
+	
 }
