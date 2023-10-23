@@ -98,6 +98,6 @@ function animate()
 	} 
 
 	player.drawRect();
-	//ball.drawCircle();
+	ball.drawCircle();
 	
 }
