@@ -98,11 +98,25 @@ function animate()
 
 	// Bounce ball off paddle
 
-	if(ball.x < player.x + ball.width/2)
+	if (ball.hitTestObject(player))
 	{
-		ball.x = player.x + ball.width/2;
-		ball.vx = -ball.vx;
-	} 
+		ball.x = player.x + player.width/2 + ball.width
+
+		ball.vx = -ball.vx
+		
+		if (ball.y > canvas.height + ball.height/6)
+		{
+			ball.vx = 5;
+			ball.vy = 5;
+		}
+
+		if (ball.y < canvas.height - ball.height/6)
+		{
+			ball.vx = 5;
+			ball.vy = 5;
+		}
+		console.log("collision")
+	}
 
 	
 	player.drawRect();
