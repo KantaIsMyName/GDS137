@@ -18,10 +18,13 @@ var ball;
 	ball = new GameObject();
 
 	// declare ball speed //
-	ball.vx = 5;
-	ball.vy = 5;
+	ball.vx = -3;
+	ball.vy = 3;
 	ball.width = 50;
 	ball.height = 50;
+
+	ball.x = canvas.width/2
+	ball.y = canvas.height/2
 
 	timer = setInterval(animate, interval);
 
@@ -44,12 +47,12 @@ function animate()
 	if(w)
 	{
 		console.log("Moving Right");
-		player.y += -2;
+		player.y += -3;
 	} 
 	if(s)
 	{
 		console.log("Moving Left");
-		player.y += 2;
+		player.y += 3;
 	}
 
 	//----Movement Using the Player's move() function----
@@ -103,7 +106,7 @@ function animate()
 		ball.x = player.x + player.width/2 + ball.width
 
 		ball.vx = -ball.vx
-		
+		/*
 		if (ball.y > canvas.height + ball.height/6)
 		{
 			ball.vx = 5;
@@ -114,8 +117,21 @@ function animate()
 		{
 			ball.vx = 5;
 			ball.vy = 5;
-		}
+		} */
 		console.log("collision")
+		
+		if (ball.y > player.y - player.height/3)
+		{
+			ball.vx = 3
+			ball.vy = 3
+		}
+		
+		if (ball.y < player.y - player.height/6)
+		{
+			ball.vx = 3
+			ball.vy = -3
+		}
+
 	}
 
 	
