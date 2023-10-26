@@ -92,6 +92,7 @@ function GameObject(obj)
 	}
 		
 	//------Tests whether a single point overlaps the bounding box of another object-------
+	// checks to see if a single point hits the boundary box // 
 	this.hitTestPoint = function(obj)
 	{
 		if(obj.x >= this.left().x && 
@@ -105,6 +106,8 @@ function GameObject(obj)
 	}
 	
 	/*-----Sets or gets the radius value--------*/
+
+	//DONT USE
 	this.radius = function(newRadius)
 	{
 		 if(newRadius==undefined)
@@ -116,6 +119,7 @@ function GameObject(obj)
 			 return newRadius;
 		 }
 	}
+	// DONT USE
 	
 	//Draws the collision points
 	this.drawDebug = function()
