@@ -29,6 +29,18 @@ var ball;
 	timer = setInterval(animate, interval);
 
 
+var player2;
+	canvas = document.getElementById("canvas");
+	context = canvas.getContext("2d");	
+	player2 = new GameObject();
+	
+	//------Declare the Player's speed on the x and y axis------
+	player2.vx = 0;
+	player2.vy = 0;
+	//----------------------------------------------------
+	
+	timer = setInterval(animate, interval);
+
 function animate()
 {
 	context.clearRect(0,0,canvas.width, canvas.height);	
@@ -50,6 +62,17 @@ function animate()
 		player.y += -3;
 	} 
 	if(s)
+	{
+		console.log("Moving Left");
+		player.y += 3;
+	}
+// P2 Movement keys
+	if(e.keycode == 38)
+	{
+		console.log("Moving Right");
+		player.y += -3;
+	} 
+	if(e.keycode == 40)
 	{
 		console.log("Moving Left");
 		player.y += 3;
