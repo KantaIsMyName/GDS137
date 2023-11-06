@@ -1,8 +1,8 @@
 //Define Booleans for each key
-var a = false;
-var d = false;
-var w = false;
 var s = false;
+var w = false;
+var down = false;
+var up = false;
 
 //Add Event Listeners
 document.addEventListener("keydown", press);
@@ -16,11 +16,11 @@ function press(e)
 	
 	if(e.keyCode == 38)
 	{
-		a = true;
+		up = true;
 	}
 	if(e.keyCode == 40)
 	{
-		d = true;
+		down = true;
 	}
 	if(e.keyCode == 87)
 	{
@@ -39,11 +39,11 @@ function release(e)
 	
 	if(e.keyCode == 38)
 	{
-		a = false;
+		up = false;
 	}
 	if(e.keyCode == 40)
 	{
-		d = false;
+		down = false;
 	}
 	if(e.keyCode == 87)
 	{

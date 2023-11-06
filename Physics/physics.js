@@ -18,6 +18,8 @@ var player;
 	player.y = canvas.height/2
 	player.vx = 0;
 	player.vy = 0;
+	player.width = 25;
+	player.height = 150;
 
 	player.force = 2;
 	
@@ -32,6 +34,8 @@ var player2;
 	player2.y = canvas.height/2
 	player2.vx = 0;
 	player2.vy = 0;
+	player2.width = 40;
+	player2.height = 150
 
 	player2.force = 2;
 	
@@ -61,6 +65,17 @@ function animate()
 	//showGravity();
 	//showPixelLock();
 	//showBounce();
+	if(up)
+	{
+		console.log("Moving Right");
+		player2.y += -3;
+	} 
+	if(down)
+	{
+		console.log("Moving Left");
+		player2.y += 3;
+	}
+
 	if(w)
 	{
 		console.log("Moving Right");
@@ -79,35 +94,49 @@ function animate()
 	if(player.y > canvas.width - player.height/2)
 	{
 		player.y = canvas.height;
-	}
+	} 
 
 	if(player.y < 0 + player.height/2)
 	{
 		player.y = 0 + player.height/2;
 	} 
+
+	// player 2 boundary
+	if(player2.y < 0 + player2.height/2)
+	{
+		player2.y = 0 + player2.height/2;
+	} 
+	if(player2.y > canvas.height - player2.height/2)
+	{
+		player2.y = canvas.height - player.height/2;
+	}
+	
 	
 	// Ball boundaries //
+	//left side boundary
 	if(ball.x > canvas.width - ball.width/2)
 	{
-		ball.x = canvas.width;
-		ball.x-= 50
+		ball.x = canvas.width/2;
 		ball.vx = -ball.vx;
 
 	}
 
+	//right side boundary
 	if(ball.x < 0 )
 	{
 		ball.x = canvas.width/2;
 		ball.vx = -ball.vx;
 
-	}  
-	
+	} 
+
+	//
 	if(ball.y > canvas.height - ball.height/2)
 	{
 		ball.y = canvas.height - ball.height/2;
 		ball.vy = -ball.vy;
 	}
 
+	//
 	if(ball.y < 0 )
 	{
 		ball.y = 0 + ball.height/2;
@@ -121,7 +150,7 @@ function animate()
 		ball.x = player.x + player.width/2 + ball.width
 
 		ball.vx = -ball.vx
-		
+		/*
 		if (ball.y > canvas.height + ball.height/6)
 		{
 			ball.vx = 5;
@@ -132,7 +161,7 @@ function animate()
 		{
 			ball.vx = 5;
 			ball.vy = 5;
-		} 
+		} */
 		console.log("collision")
 		
 		if (ball.y > player.y - player.height/3)
@@ -148,6 +177,41 @@ function animate()
 		}
 
 	}
+
+	// player 2 paddle boundary
+	if (ball.hitTestObject(player2))
+	{
+		ball.x = player2.x - player2.width/2 - ball.width
+
+		ball.vx = ball.vx
+		/*
+		if (ball.y > canvas.height + ball.height/6)
+		{
+			ball.vx = 5;
+			ball.vy = 5;
+		}
+
+		if (ball.y < canvas.height - ball.height/6)
+		{
+			ball.vx = 5;
+			ball.vy = 5;
+		} */
+		console.log("collision")
+		
+		if (ball.y > player2.y - player2.height/3)
+		{
+			ball.vx = -3
+			ball.vy = 3
+		}
+		
+		if (ball.y < player2.y - player2.height/6)
+		{
+			ball.vx = -3
+			ball.vy = -3
+		}
+
+	}
+
 	
 	player.drawRect();
 	player2.drawRect();
@@ -164,7 +228,7 @@ ONLY CALL ONE OF THESE FUNCTIONS AT A TIME!!!!!!!!*/
 function showAcceleration()
 {
 	//--------------Use Velocity and Acceleration to move around----------------------
-	if(d)
+	if(down)
 	{	
 		player.vx +=  player.ax * player.force;
 	}
@@ -172,7 +236,7 @@ function showAcceleration()
 	{
 		player.vx += player.ax * -player.force;
 	}
-	if(w)
+	if(up)
 	{	
 		player.vy += player.ay * -player.force;
 	}
