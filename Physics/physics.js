@@ -31,7 +31,6 @@ var player;
 
 var player2;
 	canvas = document.getElementById("canvas");
-	canvas.color = "000000"
 	context = canvas.getContext("2d");	
 	player2 = new GameObject();
 	
@@ -63,6 +62,9 @@ var ball;
 // win counter 
 var p1Wins = 0;
 var p2Wins = 0;
+
+//ric
+var img = document.getElementById("ric");
 
 function animate()
 {
@@ -99,6 +101,7 @@ function animate()
 	player.move();
 	player2.move();
 	ball.move();
+	
 
 	if(player.y > canvas.width - player.height/2)
 	{
@@ -234,12 +237,15 @@ function animate()
 	context.stroke();
 	context.restore();
 
-
+	
 
 	// game entities
 	player.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
+
+	// draw ric
+	context.drawImage(img, ball.x-15, ball.y-15, 30, 30);
 	
 	// scoreboard
 	context.fillText("Player1:       						 |    		 	     			Player2: ", canvas.width/2 - 300, 50)
