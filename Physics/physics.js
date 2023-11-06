@@ -13,23 +13,23 @@ var player;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 	// scoreboard text
-	context.font = "30px Tahoma";
+	context.font = "16px Arial";
 
 
 	player = new GameObject();
 	
-	player.x = 5
-	player.y = canvas.height/2
+	player.x = canvas.width/2;
+	player.y = canvas.height - 40;
 	player.vx = 0;
 	player.vy = 0;
-	player.width = 25;
-	player.height = 150;
+	player.width = 250;
+	player.height = 40;
 
 	player.force = 2;
 	
 	timer = setInterval(animate, interval);
 
-var player2;
+/* var player2;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 	player2 = new GameObject();
@@ -44,15 +44,16 @@ var player2;
 	player2.force = 2;
 	
 	timer = setInterval(animate, interval);
-
+*/
 var ball; 
 	ball = new GameObject();
 
 	// declare ball speed //
-	ball.vx = -3;
-	ball.vy = 3;
-	ball.width = 25;
-	ball.height = 25;
+	ball.vx = 5;
+	ball.vy = 0;
+	ball.width = 80;
+	ball.height = 80;
+	
 
 	ball.x = canvas.width/2
 	ball.y = canvas.height/2
@@ -61,10 +62,10 @@ var ball;
 
 // win counter 
 var p1Wins = 0;
-var p2Wins = 0;
+// var p2Wins = 0;
 
 //ric
-var img = document.getElementById("ric");
+// var img = document.getElementById("ric");
 
 function animate()
 {
@@ -76,92 +77,107 @@ function animate()
 	//showGravity();
 	//showPixelLock();
 	//showBounce();
-	if(up)
+	/*if(up)
 	{
-		console.log("Moving Right");
+		console.log("Moving up");
 		player2.y += -3;
 	} 
 	if(down)
 	{
-		console.log("Moving Left");
+		console.log("Moving down");
 		player2.y += 3;
 	}
 
 	if(w)
 	{
-		console.log("Moving Right");
+		console.log("Moving up");
 		player.y += -3;
 	} 
 	if(s)
 	{
-		console.log("Moving Left");
+		console.log("Moving down");
 		player.y += 3;
+	}*/
+
+	if(a)
+	{
+		console.log("Moving Right");
+		player.x += -3;
+	} 
+	if(d)
+	{
+		console.log("Moving Left");
+		player.x += 3;
 	}
 	
 	player.move();
-	player2.move();
+	//player2.move();
+	ball.vy += gravity;
 	ball.move();
 	
 
-	if(player.y > canvas.width - player.height/2)
+	if(player.x > canvas.width)
 	{
-		player.y = canvas.height;
+		player.x = canvas.width;
 	} 
 
-	if(player.y < 0 + player.height/2)
+	if(player.x < 0)
 	{
-		player.y = 0 + player.height/2;
+		player.x = 0 + player.width/2;
 	} 
 
 	// player 2 boundary
-	if(player2.y < 0 + player2.height/2)
+	/*if(player2.y < 0 + player2.height/2)
 	{
 		player2.y = 0 + player2.height/2;
 	} 
 	if(player2.y > canvas.height - player2.height/2)
 	{
 		player2.y = canvas.height - player.height/2;
-	}
+	}*/
 	
 	
 	// Ball boundaries //
 	//right side boundary
 	if(ball.x > canvas.width - ball.width/2)
 	{
-		ball.x = canvas.width/2;
+		//ball.x = canvas.width;
+		ball.x-= 35
 		ball.vx = -ball.vx;
-		p1Wins++
-		console.log('player1 score')
 
 	}
 
-	//left side boundary
-	if(ball.x < 0 )
+	// left
+	if(ball.x < 0 + ball.width/2)
 	{
-		ball.x = canvas.width/2;
+		ball.x = 0 + ball.width/2;
+		ball.x -= 1
 		ball.vx = -ball.vx;
-		p2Wins++
-		console.log('player2 score')
+
 	} 
 
-	//
+	// bottom
 	if(ball.y > canvas.height - ball.height/2)
 	{
 		ball.y = canvas.height - ball.height/2;
-		ball.vy = -ball.vy;
+		ball.vy = -ball.vy * .67;
+		p1Wins = 0;
 	}
 
-	//
+	// top
 	if(ball.y < 0 )
 	{
-		ball.y = 0 + ball.height/2;
+		ball.y = 0;
 		ball.vy = -ball.vy;
+		
 	} 
 
 	// Bounce ball off paddle
 
 	if (ball.hitTestObject(player))
 	{
+		p1Wins++
+
 		ball.x = player.x + player.width/2 + ball.width
 
 		ball.vx = -ball.vx
@@ -179,27 +195,32 @@ function animate()
 		} */
 		console.log("collision")
 		
-		if (ball.y > player.y - player.height/3)
+		if(ball.x > player.x)
 		{
 			ball.vx = 3
-			ball.vy = 3
+			ball.vy = -5
+		}
+		if (ball.x > player.x - player.width/6)
+		{
+			ball.vx = 3
+			ball.vy = -5
 		}
 		
-		if (ball.y < player.y - player.height/6)
+		if (ball.x < player.x - player.width/6)
 		{
 			ball.vx = 3
-			ball.vy = -3
+			ball.vy = -5
 		}
 
 	}
 
-	// player 2 paddle boundary
+	/* player 2 paddle boundary
 	if (ball.hitTestObject(player2))
 	{
 		ball.x = player2.x - player2.width/2 - ball.width
 
 		ball.vx = ball.vx
-		/*
+		
 		if (ball.y > canvas.height + ball.height/6)
 		{
 			ball.vx = 5;
@@ -210,7 +231,7 @@ function animate()
 		{
 			ball.vx = 5;
 			ball.vy = 5;
-		} */
+		} 
 		console.log("collision")
 		
 		if (ball.y > player2.y - player2.height/3)
@@ -225,15 +246,15 @@ function animate()
 			ball.vy = -3
 		}
 
-	}
+	}*/
 
 	context.save();
 	context.strokeStyle = "magenta";
 	context.beginPath();
-	context.moveTo(canvas.width/2, canvas.height);
-	context.lineTo(canvas.width/2, 0);
+	context.moveTo(player.x, player.y);
+	context.lineTo(ball.x, ball.y);
 	context.closePath();
-	context.lineWidth = 10;
+	context.lineWidth = 3;
 	context.stroke();
 	context.restore();
 
@@ -241,16 +262,17 @@ function animate()
 
 	// game entities
 	player.drawRect();
-	player2.drawRect();
+	// player2.drawRect();
 	ball.drawCircle();
 
 	// draw ric
-	context.drawImage(img, ball.x-15, ball.y-15, 30, 30);
+	//context.drawImage(img, ball.x-15, ball.y-15, 30, 30);
 	
 	// scoreboard
-	context.fillText("Player1:       						 |    		 	     			Player2: ", canvas.width/2 - 300, 50)
-	context.fillText(p1Wins, canvas.width/2 - 180, 50)
-	context.fillText(p2Wins, canvas.width/2 + 220, 50)
+	// context.fillText("Player1:       						 |    		 	     			Player2: ", canvas.width/2 - 300, 50)
+	context.fillText("Score: ", canvas.width/2 - 400, 50)
+	context.fillText(p1Wins, canvas.width/2 - 340, 50)
+	// context.fillText(p2Wins, canvas.width/2 + 220, 50)
 }
 
 

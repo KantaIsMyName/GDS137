@@ -43,7 +43,7 @@ function GameObject(x,y,w,h,color)
 	this.drawRect = function()
 	{
 		context.save();
-			context.fillStyle = this.color;
+			context.fillStyle = this.color="#00ffff";
 			context.translate(this.x, this.y);
 			context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
 		context.restore();
@@ -53,7 +53,7 @@ function GameObject(x,y,w,h,color)
 	this.drawCircle = function()
 	{
 		context.save();
-			context.fillStyle = this.color;
+			context.fillStyle = this.color="#ff00ff";
 			context.beginPath();
 			context.translate(this.x, this.y);
 			context.arc(0, 0, this.width/2, 0, 360 *Math.PI/180, true);
