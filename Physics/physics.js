@@ -12,6 +12,10 @@ var gravity = 1;
 var player;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
+	// scoreboard text
+	context.font = "30px Tahoma";
+
+
 	player = new GameObject();
 	
 	player.x = 5
@@ -54,6 +58,10 @@ var ball;
 	ball.y = canvas.height/2
 
 	timer = setInterval(animate, interval);
+
+// win counter 
+var p1Wins = 0;
+var p2Wins = 0;
 
 function animate()
 {
@@ -113,20 +121,23 @@ function animate()
 	
 	
 	// Ball boundaries //
-	//left side boundary
+	//right side boundary
 	if(ball.x > canvas.width - ball.width/2)
 	{
 		ball.x = canvas.width/2;
 		ball.vx = -ball.vx;
+		p1Wins++
+		console.log('player1 score')
 
 	}
 
-	//right side boundary
+	//left side boundary
 	if(ball.x < 0 )
 	{
 		ball.x = canvas.width/2;
 		ball.vx = -ball.vx;
-
+		p2Wins++
+		console.log('player2 score')
 	} 
 
 	//
@@ -212,10 +223,15 @@ function animate()
 
 	}
 
-	
+	// game entities
 	player.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
+	
+	// scoreboard
+	context.fillText("Player1:       						 |    		 	     			Player2: ", canvas.width/2 - 300, 50)
+	context.fillText(p1Wins, canvas.width/2 - 180, 50)
+	context.fillText(p2Wins, canvas.width/2 + 220, 50)
 }
 
 
