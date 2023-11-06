@@ -31,6 +31,7 @@ var player;
 
 var player2;
 	canvas = document.getElementById("canvas");
+	canvas.color = "000000"
 	context = canvas.getContext("2d");	
 	player2 = new GameObject();
 	
@@ -51,8 +52,8 @@ var ball;
 	// declare ball speed //
 	ball.vx = -3;
 	ball.vy = 3;
-	ball.width = 50;
-	ball.height = 50;
+	ball.width = 25;
+	ball.height = 25;
 
 	ball.x = canvas.width/2
 	ball.y = canvas.height/2
@@ -222,6 +223,18 @@ function animate()
 		}
 
 	}
+
+	context.save();
+	context.strokeStyle = "magenta";
+	context.beginPath();
+	context.moveTo(canvas.width/2, canvas.height);
+	context.lineTo(canvas.width/2, 0);
+	context.closePath();
+	context.lineWidth = 10;
+	context.stroke();
+	context.restore();
+
+
 
 	// game entities
 	player.drawRect();
