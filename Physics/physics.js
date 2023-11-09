@@ -5,9 +5,11 @@ var context;
 var timer;
 var interval = 1000/60;
 //---------------Set Friction and Gravity-----------------
-var frictionX = .85;	
+var frictionX = .65;	
 var frictionY = .97;
 var gravity = 1;
+var force = .97;
+var ax = .5;
 //--------------------------------------------------------
 var player;
 	canvas = document.getElementById("canvas");
@@ -20,10 +22,11 @@ var player;
 	
 	player.x = canvas.width/2;
 	player.y = canvas.height - 40;
-	player.vx = 0;
+	player.vx *= frictionX, force;
 	player.vy = 0;
 	player.width = 250;
 	player.height = 40;
+
 
 	player.force = 2;
 	
@@ -102,12 +105,12 @@ function animate()
 	if(a)
 	{
 		console.log("Moving Right");
-		player.x += -3;
+		player.vx -= ax;
 	} 
 	if(d)
 	{
 		console.log("Moving Left");
-		player.x += 3;
+		player.vx += ax;
 	}
 	
 	player.move();
@@ -116,12 +119,12 @@ function animate()
 	ball.move();
 	
 
-	if(player.x > canvas.width)
+	if(player.x > canvas.width - player.width/2)
 	{
-		player.x = canvas.width;
+		player.x = canvas.width - player.width/2;
 	} 
 
-	if(player.x < 0)
+	if(player.x < 0 + player.width/2)
 	{
 		player.x = 0 + player.width/2;
 	} 
@@ -178,7 +181,7 @@ function animate()
 	{
 		p1Wins++
 
-		ball.x = player.x + player.width/2 + ball.width
+		ball.x = ball.x + player.height/2
 
 		ball.vx = -ball.vx
 		/*
@@ -194,22 +197,34 @@ function animate()
 			ball.vy = 5;
 		} */
 		console.log("collision")
-		
-		if(ball.x > player.x)
+
+	
+		//middle reaches
+		// inner left
+		if(ball.x > player.x + player.height/6)
 		{
-			ball.vx = 3
-			ball.vy = -5
+			ball.vx = -ball.force
+			ball.vy = -30
 		}
-		if (ball.x > player.x - player.width/6)
+		// inner right 
+		if(ball.x < player.x - player.height/6)
 		{
-			ball.vx = 3
-			ball.vy = -5
+			ball.vx = -ball.force
+			ball.vy = -30
+		}
+		// outer reaches
+		// left
+		if (ball.x > player.x - player.height/3)
+		{
+			ball.vx = ball.force * 5
+			ball.vy = -35
 		}
 		
-		if (ball.x < player.x - player.width/6)
+		//right
+		if (ball.x < player.x - player.height/3)
 		{
-			ball.vx = 3
-			ball.vy = -5
+			ball.vx = -ball.force * 5
+			ball.vy = -35
 		}
 
 	}
