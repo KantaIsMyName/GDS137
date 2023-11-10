@@ -5,7 +5,7 @@ var context;
 var timer;
 var interval = 1000/60;
 //---------------Set Friction and Gravity-----------------
-var frictionX = .65;	
+var frictionX = .85;	
 var frictionY = .97;
 var gravity = 1;
 var force = .97;
@@ -22,7 +22,7 @@ var player;
 	
 	player.x = canvas.width/2;
 	player.y = canvas.height - 40;
-	player.vx *= frictionX, force;
+	player.vx = frictionX * force;
 	player.vy = 0;
 	player.width = 250;
 	player.height = 40;
@@ -32,22 +32,6 @@ var player;
 	
 	timer = setInterval(animate, interval);
 
-/* var player2;
-	canvas = document.getElementById("canvas");
-	context = canvas.getContext("2d");	
-	player2 = new GameObject();
-	
-	player2.x = canvas.width 
-	player2.y = canvas.height/2
-	player2.vx = 0;
-	player2.vy = 0;
-	player2.width = 40;
-	player2.height = 150
-
-	player2.force = 2;
-	
-	timer = setInterval(animate, interval);
-*/
 var ball; 
 	ball = new GameObject();
 
@@ -65,43 +49,10 @@ var ball;
 
 // win counter 
 var p1Wins = 0;
-// var p2Wins = 0;
-
-//ric
-// var img = document.getElementById("ric");
 
 function animate()
 {
 	context.clearRect(0,0,canvas.width, canvas.height);	
-	
-	//Call just one of the functions below to view acceleration, friction, gravity and pixel lock.
-	//showAcceleration();
-	//showFriction();
-	//showGravity();
-	//showPixelLock();
-	//showBounce();
-	/*if(up)
-	{
-		console.log("Moving up");
-		player2.y += -3;
-	} 
-	if(down)
-	{
-		console.log("Moving down");
-		player2.y += 3;
-	}
-
-	if(w)
-	{
-		console.log("Moving up");
-		player.y += -3;
-	} 
-	if(s)
-	{
-		console.log("Moving down");
-		player.y += 3;
-	}*/
-
 	if(a)
 	{
 		console.log("Moving Right");
@@ -114,7 +65,6 @@ function animate()
 	}
 	
 	player.move();
-	//player2.move();
 	ball.vy += gravity;
 	ball.move();
 	
@@ -122,24 +72,15 @@ function animate()
 	if(player.x > canvas.width - player.width/2)
 	{
 		player.x = canvas.width - player.width/2;
+		player.vx = 0
 	} 
 
 	if(player.x < 0 + player.width/2)
 	{
 		player.x = 0 + player.width/2;
+		player.vx = 0
 	} 
 
-	// player 2 boundary
-	/*if(player2.y < 0 + player2.height/2)
-	{
-		player2.y = 0 + player2.height/2;
-	} 
-	if(player2.y > canvas.height - player2.height/2)
-	{
-		player2.y = canvas.height - player.height/2;
-	}*/
-	
-	
 	// Ball boundaries //
 	//right side boundary
 	if(ball.x > canvas.width - ball.width/2)
@@ -184,18 +125,6 @@ function animate()
 		ball.x = ball.x + player.height/2
 
 		ball.vx = -ball.vx
-		/*
-		if (ball.y > canvas.height + ball.height/6)
-		{
-			ball.vx = 5;
-			ball.vy = 5;
-		}
-
-		if (ball.y < canvas.height - ball.height/6)
-		{
-			ball.vx = 5;
-			ball.vy = 5;
-		} */
 		console.log("collision")
 
 	
@@ -229,40 +158,6 @@ function animate()
 
 	}
 
-	/* player 2 paddle boundary
-	if (ball.hitTestObject(player2))
-	{
-		ball.x = player2.x - player2.width/2 - ball.width
-
-		ball.vx = ball.vx
-		
-		if (ball.y > canvas.height + ball.height/6)
-		{
-			ball.vx = 5;
-			ball.vy = 5;
-		}
-
-		if (ball.y < canvas.height - ball.height/6)
-		{
-			ball.vx = 5;
-			ball.vy = 5;
-		} 
-		console.log("collision")
-		
-		if (ball.y > player2.y - player2.height/3)
-		{
-			ball.vx = -3
-			ball.vy = 3
-		}
-		
-		if (ball.y < player2.y - player2.height/6)
-		{
-			ball.vx = -3
-			ball.vy = -3
-		}
-
-	}*/
-
 	context.save();
 	context.strokeStyle = "magenta";
 	context.beginPath();
@@ -286,7 +181,7 @@ function animate()
 	// scoreboard
 	// context.fillText("Player1:       						 |    		 	     			Player2: ", canvas.width/2 - 300, 50)
 	context.fillText("Score: ", canvas.width/2 - 400, 50)
-	context.fillText(p1Wins, canvas.width/2 - 340, 50)
+	context.fillText(p1Wins, canvas.width/2 - 354, 50)
 	// context.fillText(p2Wins, canvas.width/2 + 220, 50)
 }
 
