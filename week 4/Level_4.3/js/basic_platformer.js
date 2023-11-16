@@ -96,17 +96,18 @@ function animate()
 	
 	
 
-	while(platform1.hitTestPoint(player.bottom()) && player.vy <=0)
+	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
-		player.y++;
+		player.y--;
 		player.vy = 0;
-		
+		player.canJump = true;
 	}
-
-	
-	
-
-
+	while(platform0.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
 
 	
 	if(player.hitTestObject(goal))
@@ -120,10 +121,11 @@ function animate()
 	
 	
 	platform0.drawRect();
+	
 	platform1.drawRect();
 
-	
 	player.drawRect();
+	
 	
 	//Show hit points
 	player.drawDebug();
