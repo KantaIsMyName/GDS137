@@ -35,18 +35,22 @@ function release(e)
 	//---This logs key codes into the browser's console.
 	//console.log(e.keyCode);
 	
+	//jump
 	if(e.keyCode == 87)
 	{
 		w = false;
 	}
+	//left
 	if(e.keyCode == 65)
 	{
 		a = false;
 	}
+	//down
 	if(e.keyCode == 83)
 	{
 		s = false;
 	}
+	//right
 	if(e.keyCode == 68)
 	{
 		d = false;
