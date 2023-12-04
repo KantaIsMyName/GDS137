@@ -33,7 +33,7 @@ var player;
 		platform2.color = "#66ff33	";
 
 	
-	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y+100, color:"#00ffff"});
+	goal = new GameObject({width:24, height:50, x:platform1.x - platform1.x/2, y:platform1.y, color:"#00ffff"});
 	
 
 	var fX = .5;
@@ -68,7 +68,7 @@ function animate()
 	player.vy *= fY;
 	
 	player.vy += gravity;
-	player.vx += 2;
+	player.vx += 4;
 	
 	player.x += Math.round(player.vx);
 	player.y += Math.round(player.vy);
@@ -121,7 +121,7 @@ function animate()
 	{
 		// -- has the block intercept // ++ pushes the block
 		player.x++;
-		player.vx = -250;
+		player.vx = -300;
 	}
 	
 	//---------Objective: Save Me!---------------------------------------------------------------------------------------------------- 
