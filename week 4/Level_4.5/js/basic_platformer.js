@@ -108,20 +108,20 @@ function animate()
 	}
 	while(platform2.hitTestPoint(player.left()) && player.vx <=0)
 	{
-		player.x++;
-		player.vx = 0;
+		player.x--;
+		player.vx = -100;
 	}
 	while(platform2.hitTestPoint(player.right()) && player.vx >=0)
 	{
 		player.x--;
-		player.vx = 0;
+		player.vx = -100;
 	}
 	
 	while(platform1.hitTestPoint(player.right()))
 	{
 		// -- has the block intercept // ++ pushes the block
-		player.x++;
-		player.vx = -300;
+		player.x--;
+		player.vx = -100;
 	}
 	
 	//---------Objective: Save Me!---------------------------------------------------------------------------------------------------- 
