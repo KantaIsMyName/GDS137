@@ -86,6 +86,12 @@ function animate()
 		console.log("Moving down");
 		player.vy += ax;
 	}
+	if(f)
+	{
+		console.log("Ball Hold");
+		ball.vx = 0;
+		ball.x = player.width;
+	}
 	//-------------------P2 Movement
 	if(up)
 	{
@@ -97,9 +103,16 @@ function animate()
 		console.log("Moving down");
 		player2.vy += ax;
 	}
-	player.move();
-
+	if(shift)
+	{
+		console.log("Ball Hold 2");
+		ball.vx = 0;
+		ball.x = player2.width;
+	}
 	
+	
+
+	player.move();
 	player2.move();
 	ball.move();
 	
@@ -172,6 +185,14 @@ if(player2.y > canvas.height - player2.height/2)
 		ball.x = player.x + player.width/2 + ball.width
 
 		ball.vx = -ball.vx
+		
+		if(f)
+		{
+			ball.vy = 0;
+			ball.vx = 0;
+			ball.y = player.y
+
+		}
 		// lower hit
 		if (ball.y > player.y - player.height/3)
 		{
@@ -189,6 +210,7 @@ if(player2.y > canvas.height - player2.height/2)
 			ball.vx = 3
 			ball.vy = -3
 		}
+		
 
 	}
 	// Bounce ball off player 2 ---------------------------------------------
@@ -198,23 +220,23 @@ if(player2.y > canvas.height - player2.height/2)
 
 		ball.x = player2.x - player2.width/2 - ball.width
 
-		ball.vx = -ball.vx		
-		// lower hit
+
 		if (ball.y < player2.y - player2.height/3)
 		{
 			ball.vx = -3
-			ball.vy = 3
+			ball.vy = -3
 		}
 		//center hit
 		if (ball.x > player2.x + player2.width/2)
 		{
-			ball.vx = +vx;
+			ball.vx = -ball.vx;
+			ball.x = player.x - player.width/2
 		}
-		// upper hit
+		// lower hit
 		if (ball.y > player2.y + player2.height/6)
 		{
 			ball.vx = -3
-			ball.vy = -3
+			ball.vy = 3
 		}
 
 	}
