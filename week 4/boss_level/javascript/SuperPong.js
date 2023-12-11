@@ -188,8 +188,8 @@ if(player2.y > canvas.height - player2.height/2)
 		// lower hit
 		if (ball.y > player.y - player.height/3)
 		{
-			ball.vx = 3
-			ball.vy = -3
+			ball.vx = vx * .1;
+			ball.vy = vy * .1;
 		}
 		//center hit
 		if (ball.x < player.x + player.width/2)
@@ -199,8 +199,8 @@ if(player2.y > canvas.height - player2.height/2)
 		// upper hit
 		if (ball.y < player.y - player.height/6)
 		{
-			ball.vx = 3
-			ball.vy = 3
+			ball.vx = vx * .1;
+			ball.vy -= vy * .1;
 		}
 		
 
@@ -216,8 +216,8 @@ if(player2.y > canvas.height - player2.height/2)
 		// upper hit
 		if (ball.y < player2.y - player2.height/3)
 		{
-			ball.vx = -3
-			ball.vy = -3
+			ball.vx -= vx * .1;
+			ball.vy = vy * .1;
 		}
 		//center hit
 		if (ball.x > player2.x + player2.width/2)
@@ -228,8 +228,8 @@ if(player2.y > canvas.height - player2.height/2)
 		// lower hit
 		if (ball.y > player2.y + player2.height/6)
 		{
-			ball.vx = -3
-			ball.vy = 3
+			ball.vx -= 3 * .1;
+			ball.vy -= vy * .1;
 		}
 
 	}
