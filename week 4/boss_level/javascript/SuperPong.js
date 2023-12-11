@@ -103,8 +103,13 @@ function animate()
 		console.log("Moving down");
 		player2.vy += ax;
 	}
+	if(l && ball.x > player2.x + player2.width/2)
+	{
+		console.log("ball hold 2");
+		ball.vx = 0;
+		ball.x = player2.width;
+	}
 	
-
 	player.move();
 	player2.move();
 	ball.move();
@@ -213,6 +218,13 @@ if(player2.y > canvas.height - player2.height/2)
 		ball.x = player2.x - player2.width/2 - ball.width
 
 		ball.vx = -ball.vx		
+		
+		if(f && ball.x > player2.x + player2.width/2)
+		{
+			ball.vy = 0;
+			ball.vx = 0;
+			ball.y = player2.y
+		}
 		// upper hit
 		if (ball.y < player2.y - player2.height/3)
 		{
