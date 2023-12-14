@@ -92,6 +92,16 @@ function animate()
 		ball.vx = 0;
 		ball.x = player.width;
 	}
+	if(g)
+	{
+		console.log("paddle GROW");
+		player.height = 500;
+	}
+	else
+	{
+		player.height = 250;
+	}
+	
 	//-------------------P2 Movement
 	if(up)
 	{
@@ -108,6 +118,15 @@ function animate()
 		console.log("ball hold 2");
 		ball.vx = 0;
 		ball.x = player2.width;
+	}
+	if (b)
+	{
+		console.log("paddle GROW");
+		player2.height = 500;
+	}
+	else
+	{
+		player2.height = 250;
 	}
 	
 	player.move();
